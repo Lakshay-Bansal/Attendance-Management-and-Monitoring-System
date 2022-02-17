@@ -1,0 +1,36 @@
+{% extends 'Reports/base.html' %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row">
+        <h2 style="text-align: center;">{{user}}, Attendance Report</h2>
+        <h5 style="text-align: center;">Student enrolled and their attendance</h5>
+    </div> 
+    {% comment %}
+    {% for subj in Subjects %}
+        <p>{{ subj }}</p>
+    {% endfor %}
+    {% endcomment %}
+
+    <div class="section">
+      <div class="row ">
+        {% for key, value in stud_Attendance_Cnt.items %}
+            <div class="col s12 m4">
+              <div class="card blue">
+                <div class="card-content white-text">
+                  <span class="card-title" style="text-align: center;">{{ key }}</span>
+                    {% for roll_cnt in value %}
+                        <tr>
+                            <td>{{ roll_cnt.0 }} ----</td>
+                            <td>{{ roll_cnt.1 }}</td><br>
+                        </tr>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>  
+          {% endfor %}  
+      </div>  
+    </div>    
+</div>
+{% endblock %}

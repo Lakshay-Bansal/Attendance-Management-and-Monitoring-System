@@ -1,0 +1,1 @@
+This .npz contain a single user embedding which will be used for the deployment to server as when new student register to traing the model.

@@ -1,0 +1,28 @@
+{% extends 'Reports/base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+        <h2 style="text-align: center;">{{user}}, Attendance Report</h2>
+        <h5 style="text-align: center;">Subject Wise</h5>
+    </div> 
+
+    <div class="section">
+      <div class="row">
+        {% for key, value in Attendance_Dict.items %}
+            <div class="col s12 m4">
+              <div class="card blue">
+                <div class="card-content white-text">
+                  <span class="card-title" style="text-align: center;">{{ key }}</span>
+                  <p style="text-align: center;">Attendance: {{ value }}</p>
+                </div>
+              </div>
+            </div>  
+        {% endfor %}
+      </div>  
+    </div>    
+</div>
+
+{% endblock %}

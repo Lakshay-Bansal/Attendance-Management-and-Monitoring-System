@@ -1,0 +1,57 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h2 style="text-align: center;">Attendance Management System</h2>
+    </div> 
+
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 offset-m2 m4">
+            <div class="card blue">
+              <div class="card-content white-text">
+                <img src="https://drive.google.com/uc?id=1PeJkTVXTO02bFF9nuwWiUhg4W-IwqLT1" 
+                width="100" height="100" class="center">
+                <br>
+                <a href="{% url 'upload' %}" class="waves-effect waves-light btn-large center">Upload Your Images</a>
+                <br>
+                <span class="card-title" style="text-align: center;">Train</span>
+                <p style="text-align: center;">Upload your images to train the model.</p>
+              </div>
+            </div>
+          </div>  
+          
+          <div class="col s12 m4">
+            <div class="card blue">
+              <div class="card-content white-text">
+                <img src="https://drive.google.com/uc?id=1jxIch3x4UTT5CNuY8KWMOc90glCitRku" 
+                width="100" height="100" class="center">
+                <br>
+                <a href="{% url 'stdReport' %}" class="waves-effect waves-light btn-large center">Report</a>
+                <br>
+                <span class="card-title" style="text-align: center;">Attendance Report</span>
+                <p style="text-align: center;">Look at your attendance count for enrolled courses.</p>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col s12 offset-m4 m4">
+            <div class="card blue">
+              <div class="card-content white-text">
+                <img src="https://drive.google.com/uc?id=1Zrgnuo7IhJVKBvZVlsgJgi14dUXoSyvO" 
+                width="100" height="100" class="center">
+                <br>
+                <a href="{% url 'mark_Attendance' %}" class="waves-effect waves-light btn-large center">Present</a>
+                <br>
+                <span class="card-title" style="text-align: center;">Mark your Attendance</span>
+                <p style="text-align: center;">Upload the image of yourself to mark the class attendance.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>    
+</div>
+{% endblock %}

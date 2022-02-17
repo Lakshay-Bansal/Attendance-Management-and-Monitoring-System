@@ -1,0 +1,5 @@
+env\
+*.pyc
+*.jpg 
+facenet_keras.h5
+static/

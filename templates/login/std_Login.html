@@ -1,0 +1,65 @@
+{% extends 'login/base.html' %}
+
+{% block body %}     
+    <div class="container">
+        <h3 class="center">Login to Attendance Management System</h3>
+        <br><br>
+        <button class="btn waves-effect waves-light center">
+            <a href="{% url 'home' %}" class="center" style="color:azure;">Home</a>
+        </button><br>
+
+        {% if request.user.is_authenticated %}
+        <p class="center">You have Successfully Login in the account.</p>
+        <button class="btn waves-effect waves-light center" type="submit">
+            <a href="{% url 'signout' %}" class="center" style="color:azure;">Logout</a>
+        </button> 
+        <li></li>
+        {% endif %}
+        
+        {% if error %}
+            {{ error }}
+        {% endif %}
+        <div class="row">
+            <div class="col s6 offset-s3">
+              <div class="card">
+                <div class="card-content center">
+                    <span class="card-title" style="font-size:30px"><b>Login</b></span>
+                    <br>
+                    <form method = "post">
+                        {% csrf_token %}
+                        <div class="collection">
+                            <tr><th><label for="id_Roll_Number">Roll number:</label></th><td>
+                            <input type="text" name="Roll_Number" placeholder="T21011" maxlength="6" required id="id_Roll_Number"></td></tr>
+                            <tr><th><label for="id_Password">Password:</label></th><td>
+                            <input type="password" name="Password" placeholder="XXXXXX" required id="id_Password"></td></tr>     
+                            
+                            {% comment %}
+                            {% for field in form %}
+                                {% if field.name == "Roll_Number" %}
+                                <label for="{{ field.id_for_label }}" style="font-size:18px;color: blue;"><b>{{ field.name }}</b></label>
+                                <input type="text" required id = "{{ field.id_for_label }}" placeholder="T21011">
+                                <br>
+                                {% else %}
+                                <label for="{{ field.id_for_label }}" style="font-size:18px;color: blue;"><b>{{ field.name }}</b></label>
+                                <input type="password" required id = "{{ field.id_for_label }}" placeholder="XXXXXXX">
+                                {% endif %}
+                            {% endfor %}
+                            {% endcomment %}
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit" name="action" style="color:azure;">
+                            Login
+                        </button>         
+                        <br>
+                    </form>
+              </div>
+
+              <div style="padding-left:20px;">
+                <p style="font-size:15px"><b>For new user:</b></p>
+                <button class="btn waves-effect waves-light" type="submit" name="action" >
+                    <a href="{% url 'stdsignUp' %}" style="color:azure;">SignUp</a>
+                </button>
+              </div>
+            </div>
+          </div>
+    </div>
+{% endblock %}

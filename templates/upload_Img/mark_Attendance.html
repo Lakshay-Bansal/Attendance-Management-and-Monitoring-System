@@ -1,0 +1,145 @@
+{% extends 'upload_Img/base.html' %}
+
+{% block body %}
+<div>
+    <div class="container center">
+      <h3>Upload Face Image</h3>
+  
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-image" id="card-image">
+              <br>
+              <p><span id="errorMsg"></span></p>
+              <br>
+              <!-- Stream video via webcam -->
+              <div class="video-wrap">
+                  <video id="video" playsinline autoplay></video>
+              </div>
+              
+              <!-- Trigger canvas web API -->
+              <div class="controller">
+                  <button id="snap">Capture</button>
+              </div>
+              <br>
+              <!-- Webcam video snapshot -->
+              <canvas name="canvas" id="canvas" type="file" width="150" height="150"></canvas>
+              <br><br>
+
+              <img src="" name="newimg" id="newimg" class="top" />
+
+              <form method = "post" enctype="multipart/form-data" style="width: 50%;" class="center">
+                {% csrf_token %}
+                <label style="font-size:20px"><b>Subject Code: </b></label>
+                <input required name = "subject" type="text" class="block"> 
+                <br><br>
+
+                <label style="font-size:20px"><b>Your Image: </b></label>
+                <br><br>
+                <input required name="image" type="file" class="block"> 
+                <br><br>
+                <button type="submit">Upload</button>
+              </form>
+
+            </div>
+            {% if name %}
+              <div class="card-content">
+                <h6>{{name}}, Your attendance is marked successfully</h6>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<style>
+  .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+</style>
+
+<script>
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const snap = document.getElementById("snap");
+  const errorMsgElement = document.querySelector('span#errorMsg');
+
+  const constraints = {
+      video: {
+          width: 200, height: 200
+      }
+  };
+
+  // Access webcam
+  async function init() {
+      try {
+          const stream = await navigator.mediaDevices.getUserMedia(constraints);
+          handleSuccess(stream);
+      } catch (e) {
+          errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+      }
+  }
+
+  // Success
+  function handleSuccess(stream) {
+      window.stream = stream;
+      video.srcObject = stream;
+  }
+
+  // Load init
+  init();
+
+  // Draw image
+  var context = canvas.getContext('2d');
+  snap.addEventListener("click", function() {
+      context.drawImage(video, 0, 0, 150, 150);
+
+      // Stop all video streams.
+      video.srcObject.getVideoTracks().forEach(track => track.stop());
+
+  });
+</script>
+
+<!-- To convert Image into url
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src=
+"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+    </script>
+
+
+<script>
+        $(function() {
+            $("#snap").click(function() {
+                html2canvas($("#card-image"), {
+                    onrendered: function(canvas) {
+                        var imgsrc = canvas.toDataURL("image/png");
+                        console.log(imgsrc);
+                        $("#newimg").attr('src', imgsrc);
+                        $("#img").show();
+                        var dataURL = canvas.toDataURL();
+                        $.ajax({
+                            type: "POST",
+                            url: "script.php",
+                            data: {
+                                imgBase64: dataURL
+                            }
+                        }).done(function(o) {
+                            console.log('saved');
+                        });
+                    }
+                });
+            });
+        });
+</script> -->
+
+{% endblock %}

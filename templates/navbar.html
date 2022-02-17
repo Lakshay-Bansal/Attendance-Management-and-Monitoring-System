@@ -1,0 +1,72 @@
+<nav>
+    <div class="row">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="row">
+                    <div class="col l3 s12">
+                        <img src="https://drive.google.com/uc?id=1WLkTASEnWvn0BIWsINvPeT2FuXpSnvkt" alt="Image"
+                        width="50" height="50">
+                        <a href="{% url 'home' %}" class="brand-logo">AMS</a>
+                    </div>     
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a href="{% url 'home' %}">Login</a></li>
+                            <li><a href="{% url 'stdHome' %}">Student Home</a></li>
+                            <li><a href="{% url 'profHome' %}">Professor Home</a></li>
+                        </ul> -->
+
+                        <div class="dropdown">
+                            <button class="dropbtn"><b>Quick Link</b></button>
+                            <div class="dropdown-content">
+                                <a href="{% url 'home' %}">Login</a>
+                                <a href="{% url 'stdHome' %}">Student Home</a>
+                                <a href="{% url 'profHome' %}">Professor Home</a>
+                            </div>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <li><button type="submit" >
+                            <a href="{% url 'signout' %}" style="color: rgb(165, 42, 42);"><b>Logot</b></a></button></li>
+                        {% else %}
+                        <!-- <li><a href="#">Login</a></li> -->
+                        {% endif %}
+                    </ul>
+                </div>
+            <div>
+        </div> 
+    </div>   
+</nav>
+
+<!-- Reference: https://www.w3schools.com/howto/howto_css_dropdown.asp -->
+<style>
+    /* Dropdown Button */
+.dropbtn {
+  background-color: #bab9be;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  font-size: 12px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  background-color: #269b9b;
+  min-width: 160px;
+  z-index: 100;
+}
+
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: rgb(133, 28, 28);}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+</style>
