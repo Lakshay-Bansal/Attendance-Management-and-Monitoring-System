@@ -1,1 +1,1 @@
-This .npz contain a single user embedding which will be used for the deployment to server as when new student register to traing the model.
+This .npz contain a single user embedding which will be used for the first time deployment to server. This is an initial file that will be used to add the new student detail into it. Then updated file will be used to traing the model.
