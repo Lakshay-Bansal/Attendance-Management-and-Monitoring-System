@@ -13,4 +13,4 @@ How to Run the Website:
     
 
 
-Note: All other package can be of different version but h5py==2.10.0 shopuld be changed. As the keras pre-trained model will fail with other version of h5py.
+Note: All other package can be of different version but h5py==2.10.0 shouldn't be changed. As the keras pre-trained model will fail with other version of h5py.
